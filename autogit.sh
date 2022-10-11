@@ -1,4 +1,4 @@
 git add .
-git commit -m "README.md -> put | index.js -> checksExistsUserAccount() done"
+git commit -m "README.md -> update | index.js -> checksCreateTodosUserAvailability() done"
 git push
 git status

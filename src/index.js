@@ -24,7 +24,31 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  // Complete aqui
+  const { user } = request;
+
+  if (user.pro === false && user.todos.length < 10) {
+    request.user = user;
+
+    return next();
+  }
+
+  if (user.pro === true) {
+    request.user = user;
+
+    return next();
+  }
+
+  if (user.pro === false && user.todos.length >= 10) {
+
+    return response.status(403).json(user.todos);
+  }
+
+  if (user.pro === true) {
+    request.user = user;
+
+    return next();
+  }
+
 }
 
 function checksTodoExists(request, response, next) {

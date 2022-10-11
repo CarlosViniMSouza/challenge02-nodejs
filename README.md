@@ -26,7 +26,7 @@ O template está disponível na seguinte URL:
 
 [rocketseat-education/ignite-template-trabalhando-com-middlewares](https://github.com/rocketseat-education/ignite-template-trabalhando-com-middlewares)
 
-**Dica**: Caso não saiba utilizar repositórios do GitHub como template, temos um guia em **[nosso FAQ](https://www.notion.so/ddd8fcdf2339436a816a0d9e45767664).**
+**Dica**: Caso não saiba utilizar repositórios do GitHub como template, temos um guia em [nosso FAQ](https://www.notion.so/ddd8fcdf2339436a816a0d9e45767664).
 
 Agora navegue até a pasta criada, abra no Visual Studio Code e por último abra o arquivo `index.js`. Lembre-se de executar o comando `yarn` no seu terminal para instalar todas as dependências e você terá o seguinte código:
 
