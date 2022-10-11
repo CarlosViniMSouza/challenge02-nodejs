@@ -1,16 +1,26 @@
 const express = require('express');
 const cors = require('cors');
-
 const { v4: uuidv4, validate } = require('uuid');
-
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
 const users = [];
 
+// Middlewares
+
 function checksExistsUserAccount(request, response, next) {
-  // Complete aqui
+  const { username } = request.headers;
+  const user = users.find(user => user.username === username);
+
+  if (!user) {
+    return response.status(404).json({ error: 'User not Found' });
+  }
+
+  request.user = user;
+
+  return next();
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
@@ -46,6 +56,8 @@ app.post('/users', (request, response) => {
 
   return response.status(201).json(user);
 });
+
+// Routers
 
 app.get('/users/:id', findUserById, (request, response) => {
   const { user } = request;
