@@ -51,16 +51,24 @@ function checksCreateTodosUserAvailability(request, response, next) {
 
 }
 
-// I see this tests more later!
 function checksTodoExists(request, response, next) {
   const { username } = request.headers;
   const { id } = request.params;
-  const { user } = request;
 
+  const validID = validate(id);
+  const user = users.find(user => user.username === username);
   const todo = user.todos.find(todo => todo.id === id);
 
+  if (!validID) {
+    return response.status(400).json({ error: "ID Invalid" })
+  }
+
+  if (!user) {
+    return response.status(404).json({ error: "User not Found" })
+  }
+
   if (!todo) {
-    return response.status(404).json({ error: "Todo not Found!" });
+    return response.status(404).json({ error: "Todo not Found" });
   }
 
   request.todo = todo;
@@ -83,6 +91,8 @@ function findUserById(request, response, next) {
   return next();
 }
 
+// Routers
+
 app.post('/users', (request, response) => {
   const { name, username } = request.body;
 
@@ -104,8 +114,6 @@ app.post('/users', (request, response) => {
 
   return response.status(201).json(user);
 });
-
-// Routers
 
 app.get('/users/:id', findUserById, (request, response) => {
   const { user } = request;
